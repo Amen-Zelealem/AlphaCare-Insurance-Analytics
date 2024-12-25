@@ -1,0 +1,9 @@
+# Ignored Files
+
+# Virtual Environment
+alpha_insurance_env/
+
+# Python Bytecode
+__pycache__/
+
+

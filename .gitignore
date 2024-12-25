@@ -6,4 +6,6 @@ alpha_insurance_env/
 # Python Bytecode
 __pycache__/
 
+# Data
+data
 

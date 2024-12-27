@@ -140,18 +140,18 @@ class DataVisualizer:
         axs[0, 0].set_xlabel('Province', fontsize=14)
         axs[0, 0].set_ylabel('Count', fontsize=14)
         axs[0, 0].tick_params(axis='x', rotation=45)
-        axs[0, 0].legend(title='Cover Type', loc='upper center', bbox_to_anchor=(0.5, 1.15), ncol=2)
+        axs[0, 0].legend(title='Cover Type', loc='upper center', bbox_to_anchor=(0.5, 0.9), ncol=2)
 
         # 2. Car Make Distribution by Province (bar plot)
         car_make_counts = self.data.groupby('Province')['make'].count().reset_index()
-        sns.barplot(x='Province', y='make', data=car_make_counts, ax=axs[0, 1], palette='viridis')
+        sns.barplot(x='Province', y='make', data=car_make_counts, ax=axs[0, 1])
         axs[0, 1].set_title('Car Make Distribution by Province', fontsize=18, fontweight='bold')
         axs[0, 1].set_xlabel('Province', fontsize=14)
         axs[0, 1].set_ylabel('Count of Car Makes', fontsize=14)
         axs[0, 1].tick_params(axis='x', rotation=45)
 
         # 3. Total Premium by Province (box plot)
-        sns.boxplot(x='Province', y='TotalPremium', data=self.data, showmeans=True, ax=axs[1, 0], palette='pastel')
+        sns.boxplot(x='Province', y='TotalPremium', data=self.data, showmeans=True, ax=axs[1, 0])
         axs[1, 0].set_title('Distribution of Total Premium by Province', fontsize=18, fontweight='bold')
         axs[1, 0].set_xlabel('Province', fontsize=14)
         axs[1, 0].set_ylabel('Total Premium', fontsize=14)
@@ -163,13 +163,13 @@ class DataVisualizer:
         axs[1, 1].set_xlabel('Province', fontsize=14)
         axs[1, 1].set_ylabel('Count of Vehicle Types', fontsize=14)
         axs[1, 1].tick_params(axis='x', rotation=45)
-        axs[1, 1].legend(title='Vehicle Type', loc='upper center', bbox_to_anchor=(0.5, 1.15), ncol=2)
+        axs[1, 1].legend(title='Vehicle Type', loc='upper center', bbox_to_anchor=(0.5, 0.9), ncol=2)
 
         # Adjust layout to prevent overlapping and enhance aesthetics
         plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout with a title space
         plt.show()
 
-            def plot_outliers_boxplot(self, cols):
+    def plot_outliers_boxplot(self, cols):
         """
         Plots box plots to detect outliers in numerical columns.
         """

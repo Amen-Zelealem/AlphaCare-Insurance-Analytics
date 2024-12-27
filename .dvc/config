@@ -1,0 +1,4 @@
+[core]
+    remote = localstorage
+['remote "localstorage"']
+    url = D:\KAIM\KAIM-week-4\AlphaCare-Insurance-Analytics\data\

@@ -1,43 +1,59 @@
-# Task 1: AlphaCare Insurance Analysis
+# Interim Report for AlphaCare Insurance Solutions (ACIS)
 
-## **Branch Overview**
-This branch focuses on analyzing historical insurance claim data to gain actionable insights for optimizing car insurance marketing strategies in South Africa. The objective is to identify "low-risk" targets for premium reductions and develop recommendations to improve AlphaCare Insurance Solutions' product offerings.
+## Project Overview
 
----
+### Business Objective
+AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analytics in car insurance planning and marketing in South Africa. The focus of this project is to analyze historical insurance claim data to optimize marketing strategies and identify low-risk targets for premium reductions, ultimately attracting new clients.
 
-## **Objectives**
-- Perform Exploratory Data Analysis (EDA) to understand data patterns and trends.
-- Use statistical techniques to identify key insights related to premiums and claims.
-- Visualize data effectively to support decision-making.
+### Key Areas of Analysis
+- **Insurance Terminologies**: Familiarization with industry terms.
+- **A/B Hypothesis Testing**: Assessing risk differences across provinces, zip codes, and demographics.
+- **Machine Learning & Statistical Modeling**: Building models to predict claims and optimal premiums based on various features.
 
----
+## Completed Tasks
 
-## **Key Tasks**
-1. **Data Understanding**
-   - Summarize numerical and categorical data.
-   - Check for missing values and ensure proper data formatting.
+1. **GitHub Repository Setup**
+   - Created a repository and established a branch named `task-1`.
+   - Committed work consistently with descriptive messages.
 
-2. **EDA & Analysis**
-   - Conduct univariate, bivariate, and multivariate analyses.
-   - Identify correlations, outliers, and trends by geography and demographics.
+2. **Exploratory Data Analysis (EDA)**
+   - **Data Summarization**: Conducted descriptive statistics and reviewed data structure.
+   - **Data Quality Assessment**: Identified and handled missing values through dropping, imputation, and standard practices.
+   - **Univariate Analysis**: Analyzed distributions of numerical and categorical variables.
+   - **Bivariate Analysis**: Explored relationships between total premiums and claims using scatter plots and correlation matrices.
+   - **Data Comparison**: Examined trends over geography in insurance cover types and premiums.
+   - **Outlier Detection**: Utilized box plots to identify outliers.
 
-3. **Visualization**
-   - Create insightful and concise visualizations to highlight findings.
+3. **Visualizations**
+   - Created insightful visualizations to capture key findings from the EDA.
 
+## Insights from Analysis
 
----
+### Data Quality Management
+- **Dropped Columns**: Removed columns with high missing data to enhance dataset integrity.
+- **Imputation**: Employed mode and median imputation for moderate and low missing data, respectively.
 
-## **Expected Outputs**
-- Cleaned and summarized dataset.
-- Key visualizations and statistical insights.
-- Recommendations to optimize insurance offerings.
+### Dataset Overview
+- **Total Records**: Approximately 1,000,098 entries.
+- **Key Features**: Significant variability in premiums, claims, and insured sums, indicating complex risk profiles.
 
----
+### Univariate and Bivariate Insights
+- **Numerical Variables**: Right-skewed distributions for sums insured and premiums, indicating diverse policy values.
+- **Correlation Analysis**: Weak correlation (0.12) between total premiums and claims suggests other influencing factors are at play.
 
-## **How to Use**
-1. Clone the repository and switch to the `task-1` branch:
-   ```bash
-   git checkout task-1
-   ```
-2. Run the EDA scripts to generate insights and visualizations.
-3. Review outputs in the specified directories for findings and reports.
+### Cover Type Preferences
+- **Dominant Choices**: Common selections like "Own Damage" and "Passenger Liability" highlight key customer needs.
+- **Marketing Opportunities**: Potential to bundle less popular cover types with core offerings to enhance customer engagement.
+
+### Outlier Detection
+- **Box Plot Analysis**: Identified significant outliers in total premiums and claims, suggesting high variance and potential data quality issues.
+
+## Recommendations
+- **Targeted Marketing**: Focus on popular cover types and consider bundling less common options to increase uptake.
+- **Risk Assessment Refinement**: Incorporate additional variables such as demographic data to enhance modeling and improve pricing strategies.
+- **Outlier Management**: Implement capping strategies for outliers to maintain data integrity while minimizing distortion.
+
+## Next Steps
+- Conduct further analysis on identified outliers and explore their characteristics.
+- Investigate regional variations in cover type preferences and premium levels.
+- Enhance predictive models by incorporating additional influencing factors.

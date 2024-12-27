@@ -1,14 +1,12 @@
+
 # Interim Report for AlphaCare Insurance Solutions (ACIS)
 
 ## Project Overview
 
+
 ### Business Objective
 AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analytics in car insurance planning and marketing in South Africa. The focus of this project is to analyze historical insurance claim data to optimize marketing strategies and identify low-risk targets for premium reductions, ultimately attracting new clients.
 
-### Key Areas of Analysis
-- **Insurance Terminologies**: Familiarization with industry terms.
-- **A/B Hypothesis Testing**: Assessing risk differences across provinces, zip codes, and demographics.
-- **Machine Learning & Statistical Modeling**: Building models to predict claims and optimal premiums based on various features.
 
 ## Completed Tasks
 
@@ -57,3 +55,4 @@ AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analyti
 - Conduct further analysis on identified outliers and explore their characteristics.
 - Investigate regional variations in cover type preferences and premium levels.
 - Enhance predictive models by incorporating additional influencing factors.
+

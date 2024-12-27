@@ -9,3 +9,6 @@ __pycache__/
 # Data
 data
 
+# Ignore data files but not DVC files
+/data/*
+!/data/*.dvc

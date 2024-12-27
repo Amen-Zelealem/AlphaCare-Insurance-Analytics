@@ -168,3 +168,80 @@ class DataVisualizer:
         # Adjust layout to prevent overlapping and enhance aesthetics
         plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout with a title space
         plt.show()
+
+            def plot_outliers_boxplot(self, cols):
+        """
+        Plots box plots to detect outliers in numerical columns.
+        """
+        # numerical_columns = ['TotalPremium', 'SumInsured', 'CalculatedPremiumPerTerm', 'TotalClaims']
+        
+        plt.figure(figsize=(12, 4))
+        
+        # Plotting a box plot for each numerical column
+        for i, col in enumerate(cols, 1):
+            plt.subplot(1, len(cols), i)
+            sns.boxplot(y=self.data[col], color='lightblue')
+            plt.title(f'Box Plot of {col}')
+            plt.tight_layout()
+
+        plt.show()
+    
+    
+    def cap_all_outliers(self, numerical_columns):
+        """
+        Caps the outliers for all numerical columns in the dataframe 
+        using the IQR method.
+        """
+        for column in numerical_columns:
+            Q1 = self.data[column].quantile(0.25)
+            Q3 = self.data[column].quantile(0.75)
+            IQR = Q3 - Q1
+            
+            lower_bound = Q1 - 1.5 * IQR
+            upper_bound = Q3 + 1.5 * IQR
+            
+            # Cap the outliers
+            self.data[column] = self.data[column].apply(lambda x: lower_bound if x < lower_bound else (upper_bound if x > upper_bound else x))
+        
+        return self.data
+
+    
+    def plot_violin_premium_by_cover(self, x_col, y_col):
+        """
+        Creates a violin plot showing the distribution of TotalPremium by CoverType.
+        """
+        plt.figure(figsize=(10, 4))
+        sns.violinplot(x=x_col, y=y_col, data=self.data, palette='muted', inner='quartile')
+        plt.title('Distribution of TotalPremium by CoverType')
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
+        
+    def plot_pairplot(self, cols):
+        """
+        Creates a pair plot to explore the relationships between numerical features.
+        """
+        sns.pairplot(self.data[cols], palette='coolwarm')
+        plt.title('Pair Plot of Key Numerical Features')
+        plt.tight_layout()
+        plt.show()
+    
+    def plot_pairplot(self, cols):
+        """
+        Creates a pair plot to explore the relationships between numerical features.
+        """
+        sns.pairplot(self.data[cols], palette='coolwarm')
+        plt.title('Pair Plot of Key Numerical Features')
+        plt.tight_layout()
+        plt.show()
+        
+    def plot_correlation_heatmap(self, cols):
+        """
+        Creates a correlation heatmap for key numerical columns.
+        """
+        plt.figure(figsize=(8, 4))
+        corr_matrix = self.data[cols].corr()
+        sns.heatmap(corr_matrix, annot=True, cmap='RdYlGn', linewidths=0.5)
+        plt.title('Correlation Heatmap')
+        plt.tight_layout()
+        plt.show()

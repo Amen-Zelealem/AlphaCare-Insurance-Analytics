@@ -1,4 +1,6 @@
+import json
 import pandas as pd
+import os
 
 class DataProcessing:
     def __init__(self, data: pd.DataFrame):
@@ -47,3 +49,23 @@ class DataProcessing:
                     else:
                         self.data[col] = self.data[col].fillna(self.data[col].median() if not self.data[col].isnull().all() else 0)
         return self.data
+
+if __name__ == "__main__":
+    input_file="data/extracteddata/MachineLearningRating_v3.txt"
+    df = pd.read_csv(input_file,delimiter='|',low_memory=False)
+    processor = DataProcessing(df)
+    missing_summary = processor.missing_data_summary()
+
+    with open ("data/extracteddata/MissingDataSummary.json","w") as f:
+        json.dump(missing_summary.to_dict(),f)
+
+    high_missing = missing_summary[missing_summary['Percentage (%)'] > 50].index.tolist()
+    moderate_missing = missing_summary [(missing_summary['Percentage (%)'] <= 50) &(missing_summary['Percentage (%)']>20)].index.to_list()
+    low_missing = missing_summary [missing_summary['Percentage (%)'] < 20].index.to_list()
+
+    df = processor.handle_missing_data('high',high_missing)
+    df = processor.handle_missing_data('moderate',moderate_missing)
+    df = processor.handle_missing_data('low',low_missing)
+
+    os.makedirs("data/processeddata",exist_ok=True)
+    df.to_csv("data/processeddata/cleaned_data.csv",index=False)

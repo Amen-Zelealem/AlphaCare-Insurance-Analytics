@@ -16,3 +16,23 @@ stages:
       hash: md5
       md5: 244f3375819179e8dfbfea9ab7e8e09a
       size: 527372631
+  data_processing:
+    cmd: python scripts/data_processing.py
+    deps:
+    - path: data/extracteddata/MachineLearningRating_v3.txt
+      hash: md5
+      md5: 244f3375819179e8dfbfea9ab7e8e09a
+      size: 527372631
+    - path: scripts/data_processing.py
+      hash: md5
+      md5: 8c29cf63fef7469c916cc0dac7e38996
+      size: 3306
+    outs:
+    - path: data/extracteddata/MissingDataSummary.json
+      hash: md5
+      md5: f6ed63b2a59e9d791d62189ef1fe5550
+      size: 1256
+    - path: data/processeddata/cleaned_data.csv
+      hash: md5
+      md5: ea33884ba7aad89d886c85b6e22032a1
+      size: 523962052

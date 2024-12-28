@@ -6,4 +6,13 @@ stages:
       - data/MachineLearningRating_v3.zip
     outs:
       - data/extracteddata/MachineLearningRating_v3.txt
-      
+  data_processing:
+    cmd: python scripts/data_processing.py
+    deps:
+      - scripts/data_processing.py
+      - data/extracteddata/MachineLearningRating_v3.txt   
+    outs:
+      - data/processeddata/cleaned_data.csv
+    metrics:
+      - data/extracteddata/MissingDataSummary.json:
+          cache: false 

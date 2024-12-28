@@ -1,73 +1,58 @@
-# Task 2: Data Version Control (DVC)
 
-This branch implements **Data Version Control (DVC)** to manage dataset versions effectively within the project. Below are the steps and commands used to complete the task.
+# Interim Report for AlphaCare Insurance Solutions (ACIS)
 
----
+## Project Overview
 
-## Objectives
 
-1. Install and configure DVC in the project.
-2. Set up local remote storage for DVC.
-3. Track datasets with DVC and commit changes to Git.
-4. Push datasets to local remote storage.
-5. Create and manage different versions of datasets.
+### Business Objective
+AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analytics in car insurance planning and marketing in South Africa. The focus of this project is to analyze historical insurance claim data to optimize marketing strategies and identify low-risk targets for premium reductions, ultimately attracting new clients.
 
----
 
-## Steps Summary
+## Completed Tasks
 
-### 1. **Setup**
-- Merged necessary branches from `task-1` into the `main` branch using a Pull Request (PR).
-- Created a new branch named `task-2`:
-  ```bash
-  git checkout -b task-2
-  git push origin task-2
-- Installed and initialized DVC:
-  ```bash
-  pip install dvc
-  dvc init
-  git add .dvc .gitignore
-  git commit -m "Initialize DVC"
+1. **GitHub Repository Setup**
+   - Created a repository and established a branch named `task-1`.
+   - Committed work consistently with descriptive messages.
 
-### 2. **Configure Remote Storage**
- - Created a local storage directory and configured it as the default DVC remote:
-  ```bash
-  mkdir /data/localstorage
-  dvc remote add -d localstorage /data/localstorage
-  git add .dvc/config
-  git commit -m "Configure local remote storage"
+2. **Exploratory Data Analysis (EDA)**
+   - **Data Summarization**: Conducted descriptive statistics and reviewed data structure.
+   - **Data Quality Assessment**: Identified and handled missing values through dropping, imputation, and standard practices.
+   - **Univariate Analysis**: Analyzed distributions of numerical and categorical variables.
+   - **Bivariate Analysis**: Explored relationships between total premiums and claims using scatter plots and correlation matrices.
+   - **Data Comparison**: Examined trends over geography in insurance cover types and premiums.
+   - **Outlier Detection**: Utilized box plots to identify outliers.
 
-### 3. **Track and Push Data**
-- Tracked datasets using DVC:
-  ```bash
-  dvc add data/cleaned_data.csv
-  git add data/cleaned_data.csv.dvc
-  git commit -m "Track cleaned_data.csv with DVC"
-- Pushed data to the remote:
-  ```bash
-  dvc push
+3. **Visualizations**
+   - Created insightful visualizations to capture key findings from the EDA.
 
-### 4. **Versioning**  
-- Updated the dataset, re-tracked it with DVC, and pushed the changes:
-  ```bash
-  dvc add data/cleaned_data.csv
-  git add data/cleaned_data.csv.dvc
-  git commit -m "Update cleaned_data.csv with new version"
-  dvc push
+## Insights from Analysis
 
-**Key Points**
+### Data Quality Management
+- **Dropped Columns**: Removed columns with high missing data to enhance dataset integrity.
+- **Imputation**: Employed mode and median imputation for moderate and low missing data, respectively.
 
-+ DVC simplifies version control for large datasets without bloating the Git repository.
-+ Local remote storage ensures data backup and easy retrieval.
+### Dataset Overview
+- **Total Records**: Approximately 1,000,098 entries.
+- **Key Features**: Significant variability in premiums, claims, and insured sums, indicating complex risk profiles.
 
-### **Commands Summary**
-  ```bash
-  pip install dvc
-  dvc init
-  dvc remote add -d localstorage /data/localstorage
-  dvc add data/cleaned_data.csv
-  dvc push
-  git commit -m "Track or update data with DVC"
-  ```
-**Author: Amen Zelealem**
-**Date: Friday, Dec-27-2024 G.C.**
+### Univariate and Bivariate Insights
+- **Numerical Variables**: Right-skewed distributions for sums insured and premiums, indicating diverse policy values.
+- **Correlation Analysis**: Weak correlation (0.12) between total premiums and claims suggests other influencing factors are at play.
+
+### Cover Type Preferences
+- **Dominant Choices**: Common selections like "Own Damage" and "Passenger Liability" highlight key customer needs.
+- **Marketing Opportunities**: Potential to bundle less popular cover types with core offerings to enhance customer engagement.
+
+### Outlier Detection
+- **Box Plot Analysis**: Identified significant outliers in total premiums and claims, suggesting high variance and potential data quality issues.
+
+## Recommendations
+- **Targeted Marketing**: Focus on popular cover types and consider bundling less common options to increase uptake.
+- **Risk Assessment Refinement**: Incorporate additional variables such as demographic data to enhance modeling and improve pricing strategies.
+- **Outlier Management**: Implement capping strategies for outliers to maintain data integrity while minimizing distortion.
+
+## Next Steps
+- Conduct further analysis on identified outliers and explore their characteristics.
+- Investigate regional variations in cover type preferences and premium levels.
+- Enhance predictive models by incorporating additional influencing factors.
+

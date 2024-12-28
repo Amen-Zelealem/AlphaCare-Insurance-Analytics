@@ -7,6 +7,55 @@
 ### Business Objective
 AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analytics in car insurance planning and marketing in South Africa. The focus of this project is to analyze historical insurance claim data to optimize marketing strategies and identify low-risk targets for premium reductions, ultimately attracting new clients.
 
+## **Project Structure**
+
+   ``` bash
++---.dvc
+|   |   .gitignore
+|   |   config           
++---.github
+|   \---workflows
+|           blank.yml
+|           
++---.vscode
+|       settings.json
+|                          
+         
++---notebooks
+|       EDA_Analysis.ipynb
+|       README.md
+|       __init__.py
+|       
++---Screenshots
+|       correlation_heatmap.png
+|       geographical_trends.png
+|       outliers_boxplot.png
+|       premium_by_cover.png
+|       
++---scripts
+|   |   data_processing.py
+|   |   data_visualization.py
+|   |   extract_zip.py
+|   |   README.md
+|   |   __init__.py         
++---src
+|       README.md
+|       __init__.py
+|       
+|---tests
+    |   README.md
+    |   test_data_processing.py
+    |   test_extract_zip.py
+    |   __init__.py
+    |   
+|   .dvcignore
+|   .gitignore
+|   dvc.lock
+|   dvc.yaml
+|   README.md
+|   requirements.txt
+ 
+```
 
 ## Completed Tasks
 

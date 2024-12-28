@@ -27,3 +27,9 @@ def load_data(outer_zip_path: str, filename: str, extract_to: str = "../data/") 
     os.makedirs(extract_to, exist_ok=True)
     extract_file_from_zip(outer_zip_path, extract_to)
     return load_txt_from_zip(extract_to, filename)
+
+if __name__ == "__main__":
+    zip_path="data/MachineLearningRating_v3.zip"
+    output_file="MachineLearningRating_v3.txt"
+    df = load_data(zip_path,output_file)
+    df.to_csv("data/extracteddata/MachineLearningRating_v3.txt", sep='|', index=False)

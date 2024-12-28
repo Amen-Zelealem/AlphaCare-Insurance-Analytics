@@ -1,0 +1,37 @@
+stages:
+  extract_zip:
+    cmd: python scripts/extract_zip.py
+    deps:
+      - scripts/extract_zip.py
+      - data/MachineLearningRating_v3.zip
+    outs:
+      - data/extracteddata/MachineLearningRating_v3.txt
+  data_processing:
+    cmd: python scripts/data_processing.py
+    deps:
+      - scripts/data_processing.py
+      - data/extracteddata/MachineLearningRating_v3.txt   
+    outs:
+      - data/processeddata/cleaned_data.csv
+    metrics:
+      - data/extracteddata/MissingDataSummary.json:
+          cache: false 
+  
+  data_visualization:
+    cmd: python scripts/data_visualization.py
+    deps:
+      - scripts/data_visualization.py
+      - data/processeddata/cleaned_data.csv
+    plots:
+      - Screenshots/correlation_heatmap.png:
+          cache: true
+          persist: true
+      - Screenshots/premium_by_cover.png:
+          cache: true
+          persist: true
+      - Screenshots/geographical_trends.png:
+          cache: true
+          persist: true
+      - Screenshots/outliers_boxplot.png:
+          cache: true
+          persist: true

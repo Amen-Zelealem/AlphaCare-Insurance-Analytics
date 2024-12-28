@@ -1,6 +1,8 @@
+from numpy import vsplit
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 # Set global font style and additional customization
 plt.rcParams.update({
@@ -106,6 +108,7 @@ class DataVisualizer:
         plt.title('Correlation Matrix', fontsize=18, fontweight='bold', color='#8B4513')
         plt.tight_layout()
         plt.show()
+        plt.savefig("Screenshots/correlation_heatmap.png",dpi = 300)
 
     def plot_violin_premium_by_cover(self, x_col, y_col):
         """
@@ -125,7 +128,8 @@ class DataVisualizer:
         plt.xticks(rotation=45)
         plt.grid(axis='y', linestyle='--', alpha=0.5)
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+        plt.savefig("Screenshots/premium_by_cover.png",dpi = 500)
 
     def plot_geographical_trends(self, cover_types):
         fig, axs = plt.subplots(2, 2, figsize=(16, 12))
@@ -165,10 +169,14 @@ class DataVisualizer:
         axs[1, 1].tick_params(axis='x', rotation=45)
         axs[1, 1].legend(title='Vehicle Type', loc='upper center', bbox_to_anchor=(0.5, 0.9), ncol=2)
 
-        # Adjust layout to prevent overlapping and enhance aesthetics
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout with a title space
-        plt.show()
-
+        # # Adjust layout to prevent overlapping and enhance aesthetics
+        # plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout with a title space
+        # # plt.show()
+        # plt.savefig("Screenshots/geographical_trends.png", bbox_inches = 'tight',dpi = 300)
+   
+        # Adjust layout to prevent overlapping
+        plt.tight_layout()
+        plt.savefig("Screenshots/geographical_trends.png", dpi=300)
     def plot_outliers_boxplot(self, cols):
         """
         Plots box plots to detect outliers in numerical columns.
@@ -184,7 +192,8 @@ class DataVisualizer:
             plt.title(f'Box Plot of {col}')
             plt.tight_layout()
 
-        plt.show()
+        # plt.show()
+        plt.savefig("Screenshots/outliers_boxplot.png",dpi = 300)
     
     
     def cap_all_outliers(self, numerical_columns):
@@ -215,8 +224,10 @@ class DataVisualizer:
         plt.title('Distribution of TotalPremium by CoverType')
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.show()
-        
+        # plt.show()
+        plt.savefig("Screenshots/premium_by_cover.png")
+        plt.close()
+
     def plot_pairplot(self, cols):
         """
         Creates a pair plot to explore the relationships between numerical features.
@@ -224,16 +235,7 @@ class DataVisualizer:
         sns.pairplot(self.data[cols], palette='coolwarm')
         plt.title('Pair Plot of Key Numerical Features')
         plt.tight_layout()
-        plt.show()
-    
-    def plot_pairplot(self, cols):
-        """
-        Creates a pair plot to explore the relationships between numerical features.
-        """
-        sns.pairplot(self.data[cols], palette='coolwarm')
-        plt.title('Pair Plot of Key Numerical Features')
-        plt.tight_layout()
-        plt.show()
+        # plt.show()
         
     def plot_correlation_heatmap(self, cols):
         """
@@ -244,4 +246,19 @@ class DataVisualizer:
         sns.heatmap(corr_matrix, annot=True, cmap='RdYlGn', linewidths=0.5)
         plt.title('Correlation Heatmap')
         plt.tight_layout()
-        plt.show()
+        #plt.show()
+        plt.savefig("Screenshots/correlation_heatmap.png",dpi = 300)
+
+
+if __name__ == "__main__":
+    os.makedirs('Screenshots', exist_ok = True)
+    df = pd.read_csv ("data/processeddata/cleaned_data.csv", low_memory = False)
+    visualizer = DataVisualizer(df)
+
+    numerical_cols = df.select_dtypes(include=['float64','int64']).columns.to_list()
+    visualizer.plot_correlation_heatmap(numerical_cols)
+    visualizer.plot_outliers_boxplot(numerical_cols)
+    visualizer.plot_violin_premium_by_cover('CoverType','TotalPremium')
+
+    common_cover_types = df['CoverType'].value_counts().nlargest(5).index.to_list()
+    visualizer.plot_geographical_trends(common_cover_types)

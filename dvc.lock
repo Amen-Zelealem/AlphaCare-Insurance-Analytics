@@ -1,0 +1,66 @@
+schema: '2.0'
+stages:
+  extract_zip:
+    cmd: python scripts/extract_zip.py
+    deps:
+    - path: data/MachineLearningRating_v3.zip
+      hash: md5
+      md5: 8b89e33fc02624a98169f298012e535f
+      size: 16611140
+    - path: scripts/extract_zip.py
+      hash: md5
+      md5: 02b116958b951461588e8d09e64e477d
+      size: 1366
+    outs:
+    - path: data/extracteddata/MachineLearningRating_v3.txt
+      hash: md5
+      md5: 244f3375819179e8dfbfea9ab7e8e09a
+      size: 527372631
+  data_processing:
+    cmd: python scripts/data_processing.py
+    deps:
+    - path: data/extracteddata/MachineLearningRating_v3.txt
+      hash: md5
+      md5: 244f3375819179e8dfbfea9ab7e8e09a
+      size: 527372631
+    - path: scripts/data_processing.py
+      hash: md5
+      md5: 8c29cf63fef7469c916cc0dac7e38996
+      size: 3306
+    outs:
+    - path: data/extracteddata/MissingDataSummary.json
+      hash: md5
+      md5: f6ed63b2a59e9d791d62189ef1fe5550
+      size: 1256
+    - path: data/processeddata/cleaned_data.csv
+      hash: md5
+      md5: ea33884ba7aad89d886c85b6e22032a1
+      size: 523962052
+  data_visualization:
+    cmd: python scripts/data_visualization.py
+    deps:
+    - path: data/processeddata/cleaned_data.csv
+      hash: md5
+      md5: ea33884ba7aad89d886c85b6e22032a1
+      size: 523962052
+    - path: scripts/data_visualization.py
+      hash: md5
+      md5: 860c33a2c4877fb6390f826f989703dc
+      size: 11753
+    outs:
+    - path: Screenshots/correlation_heatmap.png
+      hash: md5
+      md5: 3a47348adf66e362d822747d1c524abd
+      size: 537343
+    - path: Screenshots/geographical_trends.png
+      hash: md5
+      md5: 6904a31ab60c42c79953463d4b02b9c5
+      size: 677143
+    - path: Screenshots/outliers_boxplot.png
+      hash: md5
+      md5: eb5a35beb34c3b37789480dd8f0c6624
+      size: 373393
+    - path: Screenshots/premium_by_cover.png
+      hash: md5
+      md5: e35bb4780c93bb71e564d231d380fa30
+      size: 85889

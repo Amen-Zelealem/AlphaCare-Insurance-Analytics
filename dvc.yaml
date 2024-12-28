@@ -1,0 +1,9 @@
+stages:
+  extract_zip:
+    cmd: python scripts/extract_zip.py
+    deps:
+      - scripts/extract_zip.py
+      - data/MachineLearningRating_v3.zip
+    outs:
+      - data/extracteddata/MachineLearningRating_v3.txt
+      

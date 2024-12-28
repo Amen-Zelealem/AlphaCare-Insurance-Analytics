@@ -16,3 +16,22 @@ stages:
     metrics:
       - data/extracteddata/MissingDataSummary.json:
           cache: false 
+  
+  data_visualization:
+    cmd: python scripts/data_visualization.py
+    deps:
+      - scripts/data_visualization.py
+      - data/processeddata/cleaned_data.csv
+    plots:
+      - Screenshots/correlation_heatmap.png:
+          cache: true
+          persist: true
+      - Screenshots/premium_by_cover.png:
+          cache: true
+          persist: true
+      - Screenshots/geographical_trends.png:
+          cache: true
+          persist: true
+      - Screenshots/outliers_boxplot.png:
+          cache: true
+          persist: true

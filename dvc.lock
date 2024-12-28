@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  extract_zip:
+    cmd: python scripts/extract_zip.py
+    deps:
+    - path: data/MachineLearningRating_v3.zip
+      hash: md5
+      md5: 8b89e33fc02624a98169f298012e535f
+      size: 16611140
+    - path: scripts/extract_zip.py
+      hash: md5
+      md5: 02b116958b951461588e8d09e64e477d
+      size: 1366
+    outs:
+    - path: data/extracteddata/MachineLearningRating_v3.txt
+      hash: md5
+      md5: 244f3375819179e8dfbfea9ab7e8e09a
+      size: 527372631

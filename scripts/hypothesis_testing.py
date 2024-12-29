@@ -108,6 +108,26 @@ class ABHypothesisTesting:
 
         t_stat, p_value = self._t_test(group_a, group_b, 'TotalPremium')
         return f"T-test on TotalPremium: T-statistic = {t_stat}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
+        
+    def _margin_between_postalcodes(self):
+        """
+        Test for margin differences between postal codes using t-test or z-test on TotalPremium.
+        """
+        postal_codes = self.data['PostalCode'].unique()
+        if len(postal_codes) < 2:
+            return "Not enough unique postal codes for testing."
+
+        group_a = self._segment_data('PostalCode', value=postal_codes[0])
+        group_b = self._segment_data('PostalCode', value=postal_codes[1])
+        
+        if len(group_a) > 30 and len(group_b) > 30:
+            z_stat, p_value = self._z_test(group_a, group_b, 'TotalPremium')
+            return f"Z-test on TotalPremium: Z-statistic = {z_stat}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
+        else:
+            t_stat, p_value = self._t_test(group_a, group_b, 'TotalPremium')
+            return f"T-test on TotalPremium: T-statistic = {t_stat}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
+
+
 
     def run_all_tests(self):
         """

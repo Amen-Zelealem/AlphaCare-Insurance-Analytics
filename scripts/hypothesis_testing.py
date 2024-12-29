@@ -23,13 +23,9 @@ class ABHypothesisTesting:
         
         return data_segment
 
+    def _check_identical_values(self, metric):
         """
-        Run all hypothesis tests and return the results.
+        Check if all values for a metric are identical.
         """
-        results = {
-            'Risk Differences Across Provinces': self._risk_across_provinces(),
-            'Risk Differences Between Postal Codes': self._risk_between_postalcodes(),
-            'Margin Differences Between Postal Codes': self._margin_between_postalcodes(),
-            'Risk Differences Between Women and Men': self._risk_between_genders(),
-        }
-        return results
+        unique_values = self.data[metric].dropna().unique()
+        return len(unique_values) == 1

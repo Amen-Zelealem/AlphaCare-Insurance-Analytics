@@ -79,3 +79,33 @@ class ABHypothesisTesting:
             'Risk Differences Between Women and Men': self._risk_between_genders(),
         }
         return results
+
+    def _risk_across_provinces(self):
+        """
+        Test for risk differences across provinces using Chi-Squared test on TotalPremium.
+        """
+        chi2, p_value = self._chi_squared_test('Province', 'TotalPremium')
+        return f"Chi-squared test on Province and TotalPremium: chi2 = {chi2}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
+
+    def _risk_between_postalcodes(self):
+        """
+        Test for risk differences between postal codes using Chi-Squared test.
+        """
+        chi2, p_value = self._chi_squared_test('PostalCode', 'TotalPremium')
+        return f"Chi-squared test on PostalCode and TotalPremium: chi2 = {chi2}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
+
+    def _risk_between_genders(self):
+        """
+        Test for risk differences between Men and Women using t-test on TotalPremium.
+        """
+        self.data = self._segment_data('Gender', exclude_values=['Not Specified'])
+
+        group_a = self._segment_data('Gender', value='Male')
+        group_b = self._segment_data('Gender', value='Female')
+
+        if group_a.empty or group_b.empty:
+            return "One of the gender groups is empty. Test cannot be performed."
+
+        t_stat, p_value = self._t_test(group_a, group_b, 'TotalPremium')
+        return f"T-test on TotalPremium: T-statistic = {t_stat}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
+

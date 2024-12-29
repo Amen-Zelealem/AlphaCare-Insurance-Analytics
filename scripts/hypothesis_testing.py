@@ -25,14 +25,14 @@ class ABHypothesisTesting:
 
     def _check_identical_values(self, metric):
         """
-        Check if all values for a metric are identical.
+        Check if all values for a metric are identical to avoid invalid tests.
         """
         unique_values = self.data[metric].dropna().unique()
         return len(unique_values) == 1
 
     def _chi_squared_test(self, feature, metric):
         """
-        Perform chi-squared test for categorical data.
+        Perform chi-squared test for association between a feature and a metric.
         """
         contingency_table = pd.crosstab(self.data[feature], self.data[metric])
         chi2, p_value, _, _ = stats.chi2_contingency(contingency_table)
@@ -40,7 +40,7 @@ class ABHypothesisTesting:
 
     def _t_test(self, group_a, group_b, metric):
         """
-        Perform a t-test between two groups on a given metric.
+        Perform a t-test to compare means of two groups on a metric.
         """
         if self._check_identical_values(metric):
             print(f"Warning: All values for {metric} are identical. Skipping t-test.")
@@ -51,7 +51,7 @@ class ABHypothesisTesting:
 
     def _z_test(self, group_a, group_b, metric):
         """
-        Perform a z-test between two groups if sample size is large (>30).
+        Perform a z-test for large samples (>30) to compare means of two groups.
         """
         mean_a, mean_b = group_a[metric].mean(), group_b[metric].mean()
         std_a, std_b = group_a[metric].std(), group_b[metric].std()
@@ -63,40 +63,29 @@ class ABHypothesisTesting:
 
     def _interpret_p_value(self, p_value, alpha=0.05):
         """
-        Interpret the null hypothesis based on the p-value.
+        Interpret the p-value to determine whether to reject the null hypothesis.
         """
         if p_value is None:
             return "Test skipped due to identical values."
         return "Reject the null hypothesis." if p_value < alpha else "Fail to reject the null hypothesis."
 
-        """
-        Run all hypothesis tests and return the results.
-        """
-        results = {
-            'Risk Differences Across Provinces': self._risk_across_provinces(),
-            'Risk Differences Between Postal Codes': self._risk_between_postalcodes(),
-            'Margin Differences Between Postal Codes': self._margin_between_postalcodes(),
-            'Risk Differences Between Women and Men': self._risk_between_genders(),
-        }
-        return results
-
     def _risk_across_provinces(self):
         """
-        Test for risk differences across provinces using Chi-Squared test on TotalPremium.
+        Test for differences in risk across provinces using Chi-Squared test.
         """
         chi2, p_value = self._chi_squared_test('Province', 'TotalPremium')
         return f"Chi-squared test on Province and TotalPremium: chi2 = {chi2}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
 
     def _risk_between_postalcodes(self):
         """
-        Test for risk differences between postal codes using Chi-Squared test.
+        Test for differences in risk between postal codes using Chi-Squared test.
         """
         chi2, p_value = self._chi_squared_test('PostalCode', 'TotalPremium')
         return f"Chi-squared test on PostalCode and TotalPremium: chi2 = {chi2}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
 
     def _risk_between_genders(self):
         """
-        Test for risk differences between Men and Women using t-test on TotalPremium.
+        Test for differences in risk between genders using t-test.
         """
         self.data = self._segment_data('Gender', exclude_values=['Not Specified'])
 
@@ -111,7 +100,7 @@ class ABHypothesisTesting:
         
     def _margin_between_postalcodes(self):
         """
-        Test for margin differences between postal codes using t-test or z-test on TotalPremium.
+        Test for margin differences between postal codes using t-test or z-test.
         """
         postal_codes = self.data['PostalCode'].unique()
         if len(postal_codes) < 2:
@@ -127,11 +116,9 @@ class ABHypothesisTesting:
             t_stat, p_value = self._t_test(group_a, group_b, 'TotalPremium')
             return f"T-test on TotalPremium: T-statistic = {t_stat}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
 
-
-
     def run_all_tests(self):
         """
-        Run all hypothesis tests and return the results.
+        Run all defined hypothesis tests and return a summary of results.
         """
         results = {
             'Risk Differences Across Provinces': self._risk_across_provinces(),

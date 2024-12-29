@@ -109,3 +109,14 @@ class ABHypothesisTesting:
         t_stat, p_value = self._t_test(group_a, group_b, 'TotalPremium')
         return f"T-test on TotalPremium: T-statistic = {t_stat}, p-value = {p_value}\n" + self._interpret_p_value(p_value)
 
+    def run_all_tests(self):
+        """
+        Run all hypothesis tests and return the results.
+        """
+        results = {
+            'Risk Differences Across Provinces': self._risk_across_provinces(),
+            'Risk Differences Between Postal Codes': self._risk_between_postalcodes(),
+            'Margin Differences Between Postal Codes': self._margin_between_postalcodes(),
+            'Risk Differences Between Women and Men': self._risk_between_genders(),
+        }
+        return results

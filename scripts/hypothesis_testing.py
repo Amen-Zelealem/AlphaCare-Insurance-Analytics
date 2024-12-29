@@ -9,6 +9,20 @@ class ABHypothesisTesting:
         """
         self.data = data
 
+    def _segment_data(self, feature, value=None, exclude_values=None):
+        """
+        Segment the data based on a feature. Optionally filter by value or exclude certain values.
+        """
+        if exclude_values is not None:
+            data_segment = self.data[~self.data[feature].isin(exclude_values)]
+        else:
+            data_segment = self.data.copy()
+
+        if value is not None:
+            data_segment = data_segment[data_segment[feature] == value]
+        
+        return data_segment
+
         """
         Run all hypothesis tests and return the results.
         """

@@ -6,3 +6,10 @@ from xgboost import XGBRegressor
 from sklearn.metrics import r2_score
 import shap  # Import SHAP for model interpretation
 
+def linear_regression(X_train, y_train, X_test, y_test):
+    model = LinearRegression()  # Initialize the Linear Regression model
+    model.fit(X_train, y_train)  # Fit the model to the training data
+    predictions = model.predict(X_test)  # Make predictions on the test set
+    mse = mean_squared_error(y_test, predictions)  # Calculate mean squared error
+    return model, mse  # Return the trained model and the error
+

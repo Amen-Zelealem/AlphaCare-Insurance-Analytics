@@ -64,49 +64,32 @@ AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analyti
 
 ## Completed Tasks
 
-1. **GitHub Repository Setup**
-   - Created a repository and established a branch named `task-1`.
-   - Committed work consistently with descriptive messages.
+## Task 1: Exploratory Data Analysis (EDA)
 
-2. **Exploratory Data Analysis (EDA)**
-   - **Data Summarization**: Conducted descriptive statistics and reviewed data structure.
-   - **Data Quality Assessment**: Identified and handled missing values through dropping, imputation, and standard practices.
-   - **Univariate Analysis**: Analyzed distributions of numerical and categorical variables.
-   - **Bivariate Analysis**: Explored relationships between total premiums and claims using scatter plots and correlation matrices.
-   - **Data Comparison**: Examined trends over geography in insurance cover types and premiums.
-   - **Outlier Detection**: Utilized box plots to identify outliers.
+### Overview
+EDA is essential for understanding datasets. In this analysis of a car insurance claims dataset (1,000,098 rows, 52 columns), data quality checks revealed:
 
-3. **Visualizations**
-   - Created insightful visualizations to capture key findings from the EDA.
+- **Missing Values**: High missing data in critical columns led to their removal (e.g., NumberOfVehiclesInFleet). Columns with lower missing data were imputed.
+- **Statistical Summary**: Significant skewness in key variables (e.g., SumInsured, TotalClaims) indicated few high-value entries influence averages.
+- **Univariate Analysis**: Identified distributions of numerical and categorical variables, revealing insights into policy values and demographics.
 
-## Insights from Analysis
+### Key Insights
+- **Policy Distribution**: Most policies have low insured sums, while a small subset drives metrics.
+- **Outlier Detection**: Box plots identified outliers in TotalPremium and TotalClaims, suggesting further investigation.
 
-### Data Quality Management
-- **Dropped Columns**: Removed columns with high missing data to enhance dataset integrity.
-- **Imputation**: Employed mode and median imputation for moderate and low missing data, respectively.
+## Task 2: A/B Hypothesis Testing
 
-### Dataset Overview
-- **Total Records**: Approximately 1,000,098 entries.
-- **Key Features**: Significant variability in premiums, claims, and insured sums, indicating complex risk profiles.
+### Findings
+- **Risk Differences**: Significant variations in risk across provinces (p < 0.05) and zip codes (p < 0.05); gender showed no significant risk differences (p > 0.05).
 
-### Univariate and Bivariate Insights
-- **Numerical Variables**: Right-skewed distributions for sums insured and premiums, indicating diverse policy values.
-- **Correlation Analysis**: Weak correlation (0.12) between total premiums and claims suggests other influencing factors are at play.
+## Task 3: Statistical Modeling
 
-### Cover Type Preferences
-- **Dominant Choices**: Common selections like "Own Damage" and "Passenger Liability" highlight key customer needs.
-- **Marketing Opportunities**: Potential to bundle less popular cover types with core offerings to enhance customer engagement.
+### Data Preprocessing
+Key steps included cleaning the dataset, handling missing values, encoding categorical features, and feature selection.
 
-### Outlier Detection
-- **Box Plot Analysis**: Identified significant outliers in total premiums and claims, suggesting high variance and potential data quality issues.
+### Task 4: Model Training
+Models trained: Linear Regression, Decision Tree, Random Forest, XGBoost. Random Forest and XGBoost performed best, capturing complex patterns with reasonable accuracy.
 
-## Recommendations
-- **Targeted Marketing**: Focus on popular cover types and consider bundling less common options to increase uptake.
-- **Risk Assessment Refinement**: Incorporate additional variables such as demographic data to enhance modeling and improve pricing strategies.
-- **Outlier Management**: Implement capping strategies for outliers to maintain data integrity while minimizing distortion.
-
-## Next Steps
-- Conduct further analysis on identified outliers and explore their characteristics.
-- Investigate regional variations in cover type preferences and premium levels.
-- Enhance predictive models by incorporating additional influencing factors.
+### Conclusion
+Random Forest and XGBoost are recommended for deployment, providing strong predictive power and interpretability for car insurance analytics.
 

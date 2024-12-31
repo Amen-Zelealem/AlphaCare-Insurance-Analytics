@@ -37,3 +37,7 @@ def evaluate_model(model, X_test, y_test):
     return {"mse": mse, "r2": r2}  # Return the evaluation metrics
 
 
+def explain_model_shap(model, X_train):
+    explainer = shap.Explainer(model, X_train)  # Initialize SHAP explainer with the model
+    shap_values = explainer(X_train)  # Calculate SHAP values for the training data
+    shap.summary_plot(shap_values, X_train)  # Create a summary plot of SHAP values

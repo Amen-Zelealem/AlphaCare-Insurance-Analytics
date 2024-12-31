@@ -1,5 +1,5 @@
 
-# Interim Report for AlphaCare Insurance Solutions (ACIS)
+# AlphaCare Insurance Solutions (ACIS)
 
 ## Project Overview
 

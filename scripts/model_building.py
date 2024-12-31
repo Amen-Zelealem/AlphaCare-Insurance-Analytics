@@ -21,3 +21,13 @@ def random_forest(X_train, y_train, X_test, y_test):
     mse = mean_squared_error(y_test, predictions)  # Calculate mean squared error
     return model, mse  # Return the trained model and the error
 
+ 
+def xgboost_model(X_train, y_train, X_test, y_test):
+    model = XGBRegressor(random_state=42)  # Initialize the XGBoost model
+    model.fit(X_train, y_train)  # Fit the model to the training data
+    predictions = model.predict(X_test)  # Make predictions on the test set
+    mse = mean_squared_error(y_test, predictions)  # Calculate mean squared error
+    return model, mse  # Return the trained model and the error
+
+
+

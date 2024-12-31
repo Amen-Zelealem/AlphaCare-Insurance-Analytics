@@ -30,4 +30,10 @@ def xgboost_model(X_train, y_train, X_test, y_test):
     return model, mse  # Return the trained model and the error
 
 
+def evaluate_model(model, X_test, y_test):
+    predictions = model.predict(X_test)  # Make predictions on the test set
+    mse = mean_squared_error(y_test, predictions)  # Calculate mean squared error
+    r2 = r2_score(y_test, predictions)  # Calculate R² score
+    return {"mse": mse, "r2": r2}  # Return the evaluation metrics
+
 

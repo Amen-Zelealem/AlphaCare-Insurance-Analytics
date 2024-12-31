@@ -22,7 +22,10 @@ AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analyti
 |                          
          
 +---notebooks
-|       EDA_Analysis.ipynb
+|       data_preparation.ipynb
+|       eda_analysis.ipynb
+|       hypothesis_testing.ipynb
+|       model_training.ipynb
 |       README.md
 |       __init__.py
 |       
@@ -36,6 +39,8 @@ AlphaCare Insurance Solutions (ACIS) aims to enhance risk and predictive analyti
 |   |   data_processing.py
 |   |   data_visualization.py
 |   |   extract_zip.py
+|   |   hypothesis_testing.py
+|   |   model_building.py
 |   |   README.md
 |   |   __init__.py         
 +---src
